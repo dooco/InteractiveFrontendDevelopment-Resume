@@ -222,6 +222,19 @@
 
     </footer>
     <script>
+        const pos1 = { lat: -33.727111, lng: 150.371124 };
+        const marker1 = new google.maps.Marker({ position: pos1, map: map });
+        const pos2 = { lat: -33.718234, lng: 150.363181 };
+        const marker2 = new google.maps.Marker({ position: pos2, map: map });
+        // create an array of all your markers
+        const markers = [marker1, marker2];
+
+        // Path for cluster icons to be appended (1.png, 2.png, etc.)
+        const imagePath = "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m";
+
+        // Enable marker clustering for this map and these markers
+        const markerClusterer = new MarkerClusterer(map, markers, { imagePath: imagePath });
+
         function initMap() {
             var map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 3,
@@ -230,13 +243,40 @@
                     lng: -33.134766
                 }
             });
+            var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            var locations = [
+                { lat: 40.785091, lng: -73.968285 },
+                { lat: 41.084045, lng: -73.874245 },
+                { lat: 40.754932, lng: -73.984016 }
+            ];
+            var markers = locations.map(function (location, i) {
+                return new google.maps.Marker({
+                    position: location,
+                    label: labels[i % labels.length]
+                });
+            });
+            var markerCluster = new MarkerClusterer(map, markers,
+                { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
         }
     </script>
-    src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-    </script>
+
+    <script
+        src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    // create an array of all your markers
+    const markers = [marker1, marker2];
+
+    // Path for cluster icons to be appended (1.png, 2.png, etc.)
+    const imagePath = "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m";
+
+    // Enable marker clustering for this map and these markers
+    const markerClusterer = new MarkerClusterer(map, markers, {imagePath: imagePath});
+
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-BXTfqO_fe-If8Lk0iXukIPaPUjKkJqU&callback=initMap"></script>
-    <script src="assets/js/maps.js"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-BXTfqO_fe-If8Lk0iXukIPaPUjKkJqU&callback=initMap"
+        src="assets/js/maps.js">
+
+        </script>
 </body>
 
 </html>
