@@ -12,7 +12,7 @@ function sendMail(contactForm) {
             }
         );
     return false;  // To block from loading a new page
+
+    // form_name, from_email and project_request are the tags
+    // that you use in the emailjs template content tab.
 }
-        // "from_name": contactForm.name.value,
-        // "from_email": contactForm.emailaddress.value,
-        // "project_request": contactForm.projectsummary.value
